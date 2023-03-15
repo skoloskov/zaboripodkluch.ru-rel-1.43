@@ -90,13 +90,22 @@ switch ($gate) {
         break;
 }
 
-//Переделываем форма даты
+//Добавляем дату начала активности
+$active_date = date('d.m.Y H:i:s');
+
+//Переделываем формат даты
 $date_work = explode('-', $_POST['date_fence']);
 $format_date = $date_work[2] . '.' . $date_work[1] . '.' . $date_work[0];
 
 
 //Формируем название элемента
 $elementName = $type_fence_text . ' ' . $pillars_text . ' ' . $gate_text . ' высотой ' . $_POST['height_fence'] . 'м длиной ' . $_POST['length_fence'] . 'м';
+
+//Символьный кодл
+$elementSymbol = Cutil::translit($elementName,"ru");
+
+//Регион
+$elemRegion = CIBlockPropertyEnum::GetList(Array(), Array("IBLOCK_ID"=>$arParams["IBLOCK_ID"], "VALUE"=>$APPLICATION->GetPageProperty('regionSettings')['UF_NAME']))->GetNext()["ID"];
 
 //Свойства
 $PROP = array();
@@ -112,7 +121,8 @@ $PROP['PHONE'] = htmlspecialchars($_POST['phone']); //Телефон
 $PROP['E_MAIL'] = htmlspecialchars($_POST['email']); //E-mail
 $PROP['PLACE_FENCE'] = htmlspecialchars($_POST['place_fence']); //Место установки
 $PROP['CUSTOMER_TYPE'] = $_POST['customer_type']; //Тип заказчика
-$PROP['STATUS'] = 109; //Статус заказа
+$PROP['STATUS'] = 105; //Статус заказа
+$PROP['REGION'] = $elemRegion; //поддомен
 
 
 //Основные поля элемента
@@ -120,8 +130,9 @@ $fields = array(
     "IBLOCK_ID" => $iblock_id, //ID информационного блока он 4-ый
     "IBLOCK_SECTION_ID" => $iblock_section_id, //ID раздела
     "NAME" => $elementName, //Название элемента
-    "CODE" => $elementName, // Символьный код элемента
+    "CODE" => $elementSymbol, // Символьный код элемента
     "ACTIVE" => "N", //поумолчанию делаем неактивным или ставим Y для включения поумолчанию
+    "DATE_ACTIVE_FROM" => $active_date,
     "DETAIL_TEXT" => strip_tags($_POST['descript']),
     "PROPERTY_VALUES" => $PROP, // Передаем массив значении для свойств
 );
@@ -130,10 +141,10 @@ $PRODUCT_ID = $newElement->Add($fields);
 
 $customer_type_text = false;
 switch ($_POST['customer_type']) {
-    case 112:
+    case 103:
         $customer_type_text = 'физ. лицо';
         break;
-    case 113:
+    case 104:
         $customer_type_text = 'юр лицо';
         break;
 }
@@ -162,4 +173,3 @@ fclose($f);
 
 CEvent::Send('FENCE_TENDER', SITE_ID, $arSend);
 
-?>

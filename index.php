@@ -77,7 +77,22 @@
             <h2 class="parameter__title section__title">
                 Заказы по заборам в <?=$APPLICATION->GetPageProperty('regionSettings')['UF_INCITY']?>
             </h2>
-            <?$APPLICATION->IncludeComponent(
+            <?
+            $arr_domen_name = explode('.', $_SERVER['HTTP_HOST']);
+
+            if ($arr_domen_name[0] == 'zaboripodkluch') {
+                $region_xml_id = "moskva";
+            }
+            else {
+                $region_xml_id = $arr_domen_name[0];
+            }
+
+            $region_value = CIBlockPropertyEnum::GetList(Array(),
+                Array("IBLOCK_ID"=>$arParams["IBLOCK_ID"], "XML_ID"=>$region_xml_id))->GetNext()["VALUE"];
+
+            $GLOBALS['arrTenderFilter']  = array("=PROPERTY_REGION_VALUE" => $region_value);
+
+            $APPLICATION->IncludeComponent(
                 "seologica:catalog.section",
                 "tenders_list",
                 array(
@@ -109,7 +124,7 @@
                     "ELEMENT_SORT_ORDER" => "desc",
                     "ELEMENT_SORT_ORDER2" => "desc",
                     "ENLARGE_PRODUCT" => "STRICT",
-                    "FILTER_NAME" => "arrFilter",
+                    "FILTER_NAME" => "arrTenderFilter",
                     "IBLOCK_ID" => "4",
                     "IBLOCK_TYPE" => "tenders",
                     "INCLUDE_SUBSECTIONS" => "A",
