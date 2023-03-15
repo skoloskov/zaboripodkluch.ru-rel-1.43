@@ -1,0 +1,45 @@
+    box-shadow: 0 0 20px rgb(0 0 0 / 73%);
+
+ul li:nth-child(odd) {
+	background: skyblue;
+}
+
+
+
+.mobile-links--level--0 li:nth-child(even) {
+background-color: red:
+}
+
+
+    background: linear-gradient(359deg, #c72de38c, #941eed3d);
+
+    background: linear-gradient(178deg, #9720adb8, #7024a978);
+
+
+
+
+перелив цветов
+    background: linear-gradient(1deg, #51155c, #6e309d94);
+
+
+неон текст
+.neonText {
+  color: #fff;
+  text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #0fa,
+    0 0 82px #0fa,
+    0 0 92px #0fa,
+    0 0 102px #0fa,
+    0 0 151px #0fa;
+text-decoration: none; /* Убирает подчеркивание для ссылок */
+  transform: scale(1.2); /* Увеличиваем масштаб */
+}
+
+
+
+
+
+palitra-zaborov.ru/kakoi_zabor_stavit/zabor_iz_profnastila_s_utrambovkoy_shchebnem_6_sotok

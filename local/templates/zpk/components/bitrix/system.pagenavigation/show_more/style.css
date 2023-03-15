@@ -1,0 +1,13 @@
+.load_more {
+    margin: 10px auto;
+    width: 150px;
+	height: 50px;
+	color: #fff;
+	border-radius: 2px;
+	font-size: 16px;
+	border: none;
+	background: var(--bd-hero-btn);
+	text-align: center;
+	padding: 15px 0;
+	cursor: pointer;
+}

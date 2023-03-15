@@ -1,0 +1,52 @@
+.domens_admin{
+	font-size: 12px;
+}
+.domens_admin tr th{
+	padding: 10px;
+	text-align: center;
+}
+.domens_admin tr td{
+	padding: 10px;
+	max-width: 100px;
+	overflow-wrap: break-word;
+}
+.btn {
+	background: auto;
+}
+#import_form, #export_form1, #export_form{
+	display: none;
+}
+.domensadmin h1{
+	color: #000;
+}
+.domensadmin .btn, button, input[type=submit], button.btn, input[type=submit].btn, input[type=button] {
+    background-color: #0084c9 !important;
+    border-radius: 0;
+    /*background: transparent;*/
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 14px 35px;
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: 400;
+    white-space: normal;
+    -webkit-transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out, border-color 0.1s ease-in-out;
+    transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out, border-color 0.1s ease-in-out;
+    }
+.domensadmin .btn:hover, button:hover, input[type=submit]:hover, button.btn:hover, input[type=submit].btn:hover, input[type=button]:hover {
+    text-decoration: none;
+    border: 1px solid #0084c9 !important;
+    background: #fff !important;
+    color: #0084c9 !important;
+}
+.domensadmin .btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+    }
+#export_form table td, #export_form table td{
+	
+	padding-bottom: 5px;
+}
+#export_form input, #export_form input{
+	margin-left: 30px;
+	margin-right: 4px;
+}	

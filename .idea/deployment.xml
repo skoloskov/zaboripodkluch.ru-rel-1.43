@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" serverName="zaboripodkluch.ru" autoUploadExternalChanges="true">
+    <serverData>
+      <paths name="dev.jurist-arbitr.ru">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="dev.tehlog4.ru ">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="jurist-arbitr.ru">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="jurist-arbitr.ru (1)">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="olgashishova.ru">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="zaboripodkluch.ru">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/www/zaboripodkluch.ru" local="$PROJECT_DIR$" web="zaboripodkluch.ru" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath path="/www/zaboripodkluch.ru/upload" />
+            <excludedPath path="/www/zaboripodkluch.ru/bitrix" />
+            <excludedPath local="true" path="$PROJECT_DIR$/upload" />
+            <excludedPath local="true" path="$PROJECT_DIR$/bitrix" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+      <paths name="zaboripodkluch.tehlog4">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>

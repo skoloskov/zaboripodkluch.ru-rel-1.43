@@ -1,0 +1,2 @@
+User-Agent: *
+Sitemap: https://zaboripodkluch.tehlog4.ru/sitemap-base.xml
