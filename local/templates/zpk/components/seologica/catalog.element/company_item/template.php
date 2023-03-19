@@ -180,10 +180,8 @@ if (!empty($arParams['LABEL_PROP_POSITION'])) {
 							<button type="button" class="company-page-content__phone">
 								<span class="company-page-content__phone_text">Телефон</span>
 							</button>
-							<a href="tel:+74872583788" class="company-page-content__phone-link">+74872583788</a>
-							<button type="button" class="company-page-content__order modal-quiz">
-								Предложить заказ
-							</button>
+							<a href="tel:+79955776175" class="company-page-content__phone-link">+7 (995) 577-61-75</a>
+                            <button class="hero__button_item_button btn modal-order">Предложить заказ</button>
 						</div>
 					</div>
 				</div>
@@ -246,294 +244,44 @@ if (isset($arResult['PROPERTIES']['OBJECTS']) && count($arResult['PROPERTIES']['
 		<a name="zabor_list"></a>
 		
 		<h2 class="territory__title section__title">Фото готовых заборов</h2>
-		<select name="zabory" id="type_select" class="territory__select" onchange="select_change(this);">
+		<!-- select name="zabory" id="type_select" class="territory__select" onchange="select_change(this);">
 			<option value="">Все заборы</option>
 			<?foreach($arResult['PROPERTIES']['SECTIONS'] as $section){?>
 				<option value="<?=$section['ID']?>" <?=(isset($_REQUEST['section'])&&$_REQUEST['section']==$section['ID'])?'selected':'';?>><?=str_repeat('&nbsp;&nbsp;',$section['DEPTH_LEVEL'])?><?=$section['NAME']?> (<?=(int)$arResult['SECTIONS_COUNT'][$section['ID']]?>)</option>
 			<?}?>
 			
-		</select>
+		</select -->
 		
 		<ul class="territory__list">
 			<?foreach ($arResult['PROPERTIES']['OBJECTS'] as $object){
 				//echo '<pre>'.print_r($object, true).'</pre>';die();
 				if (!isset($_REQUEST['section']) || $_REQUEST['section']==$object['IBLOCK_SECTION_ID'])
 				{
-					$objPhoto = CFile::ResizeImageGet($object["PROPERTIES"]['PHOTO']['VALUE'][0], array('width' => 800, 'height' => 600), BX_RESIZE_IMAGE_EXACT, true);
+                    $objPhoto = CFile::ResizeImageGet($object["PROPERTIES"]['PHOTO']['VALUE'][0], array('width' => 300, 'height' => 187), BX_RESIZE_IMAGE_EXACT, true, $arWaterMark);
+                    $stars = ceil(($object['SHOW_COUNTER']/$arResult['MAX_SHOW_COUNTER'])*10/2);
 					?>
-					<li class="territory__item">
-						<a class="territory__link " href="<?=$object['DETAIL_PAGE_URL']?>" style="background-image:url(<?=$objPhoto['src']?>)">
-							<!-- cards 1 -->
-							<div class="territory__item-content">
-								<div class="territory__item-header">
-									<div class="territory__item-date"><?=date('d.m.y',$object['DATE_CREATE_UNIX'])?></div>
-									<div class="territory__item-range">
-										<span class="range__el"></span>
-										<span class="range__el"></span>
-										<span class="range__el"></span>
-										<span class="range__el"></span>
-										<span class="range__el"></span>
-									</div>
-									<span class="range__text">рейтинг: <?=(int)$object['SHOW_COUNTER']?></span>
-								</div>
-								<div class="territory__item-title">
-									<?=$object['NAME']?>
-								</div>
-								<button type="button" class="territory__item-btn">Смотреть характеристики забора</button>
-								<div class="territory__item-desc">
-									<div class="territory__desc-content">
-										<div class="territory__el_height">Высота</div>
-										<div class="territory__el_value">1,8 метра</div>
-									</div>
-									<div class="territory__desc-content">
-										<div class="territory__el_color">Длина</div>
-										<div class="territory__el_rgb">150 метров</div>
-									</div>
-									<div class="territory__desc-content">
-										<div class="territory__el_price">Стоимость</div>
-										<div class="territory__el_number"><?=$object['PROPERTIES']['PRICE']['VALUE']?> р</div>
-									</div>
-								</div>
-							</div>
-						</a>
-					</li>
+                    <li class="objects_pictures__item territory__item">
+                        <a class="objects_pictures__link" href="<?=$object['DETAIL_PAGE_URL']?>">
+                            <!-- cards 1 -->
+                            <img src="<?=$objPhoto['src']?>">
+                            <div class="objects_pictures__item_content">
+                                <div class="objects_pictures__item_name"><?=$object['NAME']?></div>
+                                <div class="objects_pictures__item_char">
+                                    <div class="objects_pictures__item_length">Длина: <span><?=$object['PROPERTIES']['LENGTH']['VALUE']?> метров</span></div>
+                                    <div class="objects_pictures__item_height">Высота: <span><?=$object['PROPERTIES']['HEIGHT']['VALUE']?> метра</span></div>
+                                </div>
+                                <div class="objects_pictures__item_count">
+                                    <div class="rating" data-value="<?=$stars?>"> <span class="range__text"><?=(int)$object['SHOW_COUNTER']?></span></div>
+                                    <div class="objects_pictures__item_price"><?=number_format($object['PROPERTIES']['PRICE']['VALUE'],0,false,' ')?> р</div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
 					<?
 				}
 			}?>
-			<?/*
-			<li class="territory__item">
-				<a class="territory__link bg__img1" href="">
-					<!-- cards 1 -->
-					<div class="territory__item-content">
-						<div class="territory__item-header">
-							<div class="territory__item-date">10.10.20</div>
-							<div class="territory__item-range">
-								<span class="range__el"></span>
-								<span class="range__el"></span>
-								<span class="range__el"></span>
-								<span class="range__el"></span>
-								<span class="range__el"></span>
-							</div>
-							<span class="range__text">рейтинг: 2015</span>
-						</div>
-						<div class="territory__item-title">
-							Забор из штакетника, Огуднево
-						</div>
-						<button type="button" class="territory__item-btn">Смотреть характеристики забора</button>
-						<div class="territory__item-desc">
-							<div class="territory__desc-content">
-								<div class="territory__el_height">Высота</div>
-								<div class="territory__el_value">1,8 метра</div>
-							</div>
-							<div class="territory__desc-content">
-								<div class="territory__el_color">Длина</div>
-								<div class="territory__el_rgb">150 метров</div>
-							</div>
-							<div class="territory__desc-content">
-								<div class="territory__el_price">Стоимость</div>
-								<div class="territory__el_number">350 000 р</div>
-							</div>
-						</div>
-					</div>
-				</a>
-			</li>
-			<li class="territory__item">
-				<a class="territory__link bg__img2" href="">
-					<!-- cards 2 -->
-					<div class="territory__item-content">
-						<div class="territory__item-date">9 октября 2020 года</div>
-						<div class="territory__item-title">
-							Забор из металлического штакетника, Боровский р-н, Киселево
-						</div>
-						<button type="button" class="territory__item-btn">Смотреть характеристики забора</button>
-						<div class="territory__item-desc">
-							<div class="territory__desc-content">
-								<div class="territory__el_height">Высота</div>
-								<div class="territory__el_value">1,8 метра</div>
-							</div>
-							<div class="territory__desc-content">
-								<div class="territory__el_color">Длина</div>
-								<div class="territory__el_rgb">150 метров</div>
-							</div>
-							<div class="territory__desc-content">
-								<div class="territory__el_price">Стоимость</div>
-								<div class="territory__el_number">350 000 р</div>
-							</div>
-						</div>
-					</div>
-				</a>
-			</li>
-			<li class="territory__item">
-				<a class="territory__link bg__img3" href="">
-					<!-- cards 3 -->
-					<div class="territory__item-content">
-						<div class="territory__item-date">6 октября 2020 года</div>
-						<div class="territory__item-title">
-							Фото забора из металлического штакетника, Щелковский район,
-							Масальское
-						</div>
-						<button type="button" class="territory__item-btn">Смотреть характеристики забора</button>
-						<div class="territory__item-desc">
-							<div class="territory__desc-content">
-								<div class="territory__el_height">Высота</div>
-								<div class="territory__el_value">1,8 метра</div>
-							</div>
-							<div class="territory__desc-content">
-								<div class="territory__el_color">Длина</div>
-								<div class="territory__el_rgb">150 метров</div>
-							</div>
-							<div class="territory__desc-content">
-								<div class="territory__el_price">Стоимость</div>
-								<div class="territory__el_number">350 000 р</div>
-							</div>
-						</div>
-					</div>
-				</a>
-			</li>
-			<li class="territory__item">
-				<a class="territory__link bg__img4" href="">
-					<!-- cards 4 -->
-					<div class="territory__item-content">
-						<div class="territory__item-date">4 октября 2020 года</div>
-						<div class="territory__item-title">
-							Забор из штакетника, Калужская обл, д. Макарово
-						</div>
-						<button type="button" class="territory__item-btn">Смотреть характеристики забора</button>
-						<div class="territory__item-desc">
-							<div class="territory__desc-content">
-								<div class="territory__el_height">Высота</div>
-								<div class="territory__el_value">1,8 метра</div>
-							</div>
-							<div class="territory__desc-content">
-								<div class="territory__el_color">Длина</div>
-								<div class="territory__el_rgb">150 метров</div>
-							</div>
-							<div class="territory__desc-content">
-								<div class="territory__el_price">Стоимость</div>
-								<div class="territory__el_number">350 000 р</div>
-							</div>
-						</div>
-					</div>
-				</a>
-			</li>
-			<li class="territory__item">
-				<a class="territory__link bg__img5" href="">
-					<!-- cards 5 -->
-					<div class="territory__item-content">
-						<div class="territory__item-date">1 октября 2020 года</div>
-						<div class="territory__item-title">
-							Забор из металлического штакетника, с. Пирочи
-						</div>
-						<button type="button" class="territory__item-btn">Смотреть характеристики забора</button>
-						<div class="territory__item-desc">
-							<div class="territory__desc-content">
-								<div class="territory__el_height">Высота</div>
-								<div class="territory__el_value">1,8 метра</div>
-							</div>
-							<div class="territory__desc-content">
-								<div class="territory__el_color">Длина</div>
-								<div class="territory__el_rgb">150 метров</div>
-							</div>
-							<div class="territory__desc-content">
-								<div class="territory__el_price">Стоимость</div>
-								<div class="territory__el_number">350 000 р</div>
-							</div>
-						</div>
-					</div>
-				</a>
-			</li>
-			<li class="territory__item">
-				<a class="territory__link bg__img6" href="">
-					<!-- cards 6 -->
-					<div class="territory__item-content">
-						<div class="territory__item-date">18 сентября 2020 года</div>
-						<div class="territory__item-title">
-							Забор из металлического штакетника, д. Киселевка
-						</div>
-						<button type="button" class="territory__item-btn">Смотреть характеристики забора</button>
-						<div class="territory__item-desc">
-							<div class="territory__desc-content">
-								<div class="territory__el_height">Высота</div>
-								<div class="territory__el_value">1,8 метра</div>
-							</div>
-							<div class="territory__desc-content">
-								<div class="territory__el_color">Длина</div>
-								<div class="territory__el_rgb">150 метров</div>
-							</div>
-							<div class="territory__desc-content">
-								<div class="territory__el_price">Стоимость</div>
-								<div class="territory__el_number">350 000 р</div>
-							</div>
-						</div>
-					</div>
-				</a>
-			</li>
-			<li class="territory__item">
-				<a class="territory__link bg__img7" href="">
-					<!-- cards 7 -->
-					<div class="territory__item-content">
-						<div class="territory__item-date">15 сентября 2020 года</div>
-						<div class="territory__item-title">
-							Забор из металлического штакетника, КП Истра Парк
-						</div>
-						<button type="button" class="territory__item-btn">Смотреть характеристики забора</button>
-						<div class="territory__item-desc">
-							<div class="territory__desc-content">
-								<div class="territory__el_height">Высота</div>
-								<div class="territory__el_value">1,8 метра</div>
-							</div>
-							<div class="territory__desc-content">
-								<div class="territory__el_color">Длина</div>
-								<div class="territory__el_rgb">Золотой дуб</div>
-							</div>
-							<div class="territory__desc-content">
-								<div class="territory__el_price">Стоимость</div>
-								<div class="territory__el_number">350 000 р</div>
-							</div>
-						</div>
-					</div>
-				</a>
-			</li>
-			<li class="territory__item">
-				<a class="territory__link bg__img8" href="">
-					<!-- cards 8 -->
-					<div class="territory__item-content">
-						<div class="territory__item-date">10 сентября 2020 года</div>
-						<div class="territory__item-title">
-							Забор из металлического штакетника, КП Балтия
-						</div>
-						<button type="button" class="territory__item-btn">Смотреть характеристики забора</button>
-						<div class="territory__item-desc">
-							<div class="territory__desc-content">
-								<div class="territory__el_height">Высота</div>
-								<div class="territory__el_value">2,0 метра</div>
-							</div>
-							<div class="territory__desc-content">
-								<div class="territory__el_color">Длина</div>
-								<div class="territory__el_rgb">150 метров</div>
-							</div>
-							<div class="territory__desc-content">
-								<div class="territory__el_price">Стоимость</div>
-								<div class="territory__el_number">350 000 р</div>
-							</div>
-						</div>
-					</div>
-				</a>
-			</li>*/?>
 		</ul>
-		<?/*<div class="territory__all-block">
-			<button type="button" class="territory__all-btn">Показать следующие 30 товары</button>
-		</div>*/?>
-		<!-- <div class="territory-pagination">
-            <a class="territory-pagination__link link__back">Назад</a>
-            <a class="territory-pagination__link territory-pagination__link_active">1</a>
-            <a class="territory-pagination__link">2</a>
-            <a class="territory-pagination__link">3</a>
-            <a class="territory-pagination__link link__invisible">4</a>
-            <span class="link__none">...</span>
-            <a class="territory-pagination__link">13</a>
-            <a class="territory-pagination__link link__next">Далее</a>
-        </div> -->
 	</div>
 </section>
 <?}?>
@@ -565,13 +313,6 @@ if (isset($arResult['PROPERTIES']['REVIEWS']) && count($arResult['PROPERTIES']['
 							
 							<div class="recall__el">
 								<div class="rating" data-value="<?=(int)$review['PROPERTIES']['RATING']['VALUE']?>"></div>
-								<?/*<div class="recall__range-page">
-									<span class="range-page__star"></span>
-									<span class="range-page__star_none"></span>
-									<span class="range-page__star_none"></span>
-									<span class="range-page__star_none"></span>
-									<span class="range-page__star_none"></span>
-								</div>*/?>
 								<div class="recall__date"><?=date('d.m.Y', strtotime($review['PROPERTIES']['DATE']['VALUE']))?></div>
 							</div>
 						</div>
@@ -598,325 +339,28 @@ if (isset($arResult['PROPERTIES']['REVIEWS']) && count($arResult['PROPERTIES']['
 				<?
 			}
 			?>
-			<?/*<li class="recall__item">
-				<div class="recall__header">
-					<img src="img/user_img.png" alt="" class="recall__user" />
-					<div class="recall__block">
-						<span class="recall__name">Ольга О.</span>
-						<div class="recall__el">
-							<div class="recall__range-page">
-								<span class="range-page__star"></span>
-								<span class="range-page__star_none"></span>
-								<span class="range-page__star_none"></span>
-								<span class="range-page__star_none"></span>
-								<span class="range-page__star_none"></span>
-							</div>
-							<div class="recall__date">26.12.2020</div>
-						</div>
-					</div>
-				</div>
-				<div class="recall__desc">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-					possimus ipsa molestias voluptates, nisi commodi modi debitis
-					unde laudantium animi, quaerat, tenetur consectetur corporis in
-					id perspiciatis consequuntur eius. Quaerat? Lorem ipsum dolor
-					sit amet consectetur adipisicing elit. Voluptate, eaque maxime!
-					Architecto exercitationem iure, provident quo debitis
-					reprehenderit mollitia necessitatibus aspernatur, quis nemo,
-					eligendi minima fugit doloremque veritatis ut laboriosam?
-				</div>
-			</li>
-			<!-- Отзыв 2 -->
-			<li class="recall__item">
-				<div class="recall__header">
-					<img src="img/user_img.png" alt="" class="recall__user" />
-					<div class="recall__block">
-						<span class="recall__name">СЕРГЕЙ Г.</span>
-						<div class="recall__el">
-							<div class="recall__range-page">
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-							</div>
-							<div class="recall__date">24.12.2020</div>
-						</div>
-					</div>
-				</div>
-				<div class="recall__desc">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit.
-				</div>
-			</li>
-			<!-- Отзыв 3 -->
-			<li class="recall__item">
-				<div class="recall__header">
-					<img src="img/user_img.png" alt="" class="recall__user" />
-					<div class="recall__block">
-						<span class="recall__name">Олег Ч.</span>
-						<div class="recall__el">
-							<div class="recall__range-page">
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-							</div>
-							<div class="recall__date">04.12.2020</div>
-						</div>
-					</div>
-				</div>
-				<div class="recall__desc">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-					possimus ipsa molestias voluptates, nisi commodi modi debitis.
-				</div>
-			</li>
-			<!-- Отзыв 4 -->
-			<li class="recall__item">
-				<div class="recall__header">
-					<img src="img/user_img.png" alt="" class="recall__user" />
-					<div class="recall__block">
-						<span class="recall__name">Алан А.</span>
-						<div class="recall__el">
-							<div class="recall__range-page">
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-							</div>
-							<div class="recall__date">26.11.2020</div>
-						</div>
-					</div>
-				</div>
-				<div class="recall__desc">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-					possimus ipsa molestias voluptates, nisi commodi modi debitis
-					unde laudantium animi, quaerat, tenetur consectetur corporis in
-					id perspiciatis consequuntur eius.
-				</div>
-				<!-- Изображения -->
-				<div class="recall__slider">
-					<div class="slider__item">
-						<img class="slide__img" src="<?= SITE_TEMPLATE_PATH; ?>/img/company/recall_img1.jpg" alt="" />
-					</div>
-					<div class="slider__item">
-						<img class="slide__img" src="<?= SITE_TEMPLATE_PATH; ?>/img/company/recall_img2.jpg" alt="" />
-					</div>
-					<div class="slider__item">
-						<img class="slide__img" src="<?= SITE_TEMPLATE_PATH; ?>/img/company/recall_img3.jpg" alt="" />
-					</div>
-				</div>
-			</li>
-			<!-- Отзыв 5 -->
-			<li class="recall__item">
-				<div class="recall__header">
-					<img src="<?= SITE_TEMPLATE_PATH; ?>/img/user_img.png" alt="" class="recall__user" />
-					<div class="recall__block">
-						<span class="recall__name">Юлия С.</span>
-						<div class="recall__el">
-							<div class="recall__range-page">
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-							</div>
-							<div class="recall__date">05.11.2020</div>
-						</div>
-					</div>
-				</div>
-				<div class="recall__desc">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit.
-				</div>
-			</li>
-			<!-- Отзыв 6 -->
-			<li class="recall__item">
-				<div class="recall__header">
-					<img src="<?= SITE_TEMPLATE_PATH; ?>/img/user_img.png" alt="" class="recall__user" />
-					<div class="recall__block">
-						<span class="recall__name">Владимир Корягин</span>
-						<div class="recall__el">
-							<div class="recall__range-page">
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-							</div>
-							<div class="recall__date">23.09.2020</div>
-						</div>
-					</div>
-				</div>
-				<div class="recall__desc">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-					possimus ipsa molestias voluptates, nisi commodi modi debitis
-					unde laudantium animi, quaerat, tenetur consectetur corporis in
-					id perspiciatis consequuntur eius. Quaerat? Lorem ipsum dolor
-					sit amet consectetur adipisicing elit. Voluptate, eaque maxime!
-					Architecto exercitationem iure, provident quo debitis
-					reprehenderit mollitia necessitatibus aspernatur, quis nemo,
-					eligendi minima fugit doloremque veritatis ut laboriosam?
-				</div>
-			</li>
-			<!-- Отзыв 7 -->
-			<li class="recall__item">
-				<div class="recall__header">
-					<img src="<?= SITE_TEMPLATE_PATH; ?>/img/user_img.png" alt="" class="recall__user" />
-					<div class="recall__block">
-						<span class="recall__name">Иван</span>
-						<div class="recall__el">
-							<div class="recall__range-page">
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-							</div>
-							<div class="recall__date">23.09.2020</div>
-						</div>
-					</div>
-				</div>
-				<div class="recall__desc">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-					possimus ipsa molestias voluptates, nisi commodi modi debitis
-					unde laudantium animi, quaerat, tenetur consectetur corporis in
-					id perspiciatis consequuntur eius.
-				</div>
-				<!-- Изображения -->
-				<div class="recall__slider">
-					<div class="slider__item">
-						<img class="slide__img" src="<?= SITE_TEMPLATE_PATH; ?>/img/company/recall_img1.jpg" alt="" />
-					</div>
-					<div class="slider__item">
-						<img class="slide__img" src="<?= SITE_TEMPLATE_PATH; ?>/img/company/recall_img2.jpg" alt="" />
-					</div>
-					<div class="slider__item">
-						<img class="slide__img" src="<?= SITE_TEMPLATE_PATH; ?>/img/company/recall_img3.jpg" alt="" />
-					</div>
-					<div class="slider__item">
-						<img class="slide__img" src="<?= SITE_TEMPLATE_PATH; ?>/img/company/recall_img1.jpg" alt="" />
-					</div>
-					<div class="slider__item">
-						<img class="slide__img" src="<?= SITE_TEMPLATE_PATH; ?>/img/company/recall_img2.jpg" alt="" />
-					</div>
-					<div class="slider__item">
-						<img class="slide__img" src="<?= SITE_TEMPLATE_PATH; ?>/img/company/recall_img3.jpg" alt="" />
-					</div>
-					<div class="slider__item">
-						<img class="slide__img" src="<?= SITE_TEMPLATE_PATH; ?>/img/company/recall_img1.jpg" alt="" />
-					</div>
-					<div class="slider__item">
-						<img class="slide__img" src="<?= SITE_TEMPLATE_PATH; ?>/img/company/recall_img2.jpg" alt="" />
-					</div>
-					<div class="slider__item">
-						<img class="slide__img" src="<?= SITE_TEMPLATE_PATH; ?>/img/company/recall_img3.jpg" alt="" />
-					</div>
-					<div class="slider__item">
-						<img class="slide__img" src="<?= SITE_TEMPLATE_PATH; ?>/img/company/recall_img1.jpg" alt="" />
-					</div>
-					<div class="slider__item">
-						<img class="slide__img" src="<?= SITE_TEMPLATE_PATH; ?>/img/company/recall_img2.jpg" alt="" />
-					</div>
-					<div class="slider__item">
-						<img class="slide__img" src="<?= SITE_TEMPLATE_PATH; ?>/img/company/recall_img3.jpg" alt="" />
-					</div>
-				</div>
-			</li>
-			<!-- Отзыв 8 -->
-			<li class="recall__item">
-				<div class="recall__header">
-					<img src="<?= SITE_TEMPLATE_PATH; ?>/img/user_img.png" alt="" class="recall__user" />
-					<div class="recall__block">
-						<span class="recall__name">Наталья Е.</span>
-						<div class="recall__el">
-							<div class="recall__range-page">
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-							</div>
-							<div class="recall__date">29.08.2020</div>
-						</div>
-					</div>
-				</div>
-				<div class="recall__desc">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-					possimus ipsa molestias voluptates, nisi commodi modi debitis
-					unde laudantium animi, quaerat, tenetur consectetur corporis in
-					id perspiciatis consequuntur eius.
-				</div>
-			</li>
-			<!-- Отзыв 9 -->
-			<li class="recall__item">
-				<div class="recall__header">
-					<img src="<?= SITE_TEMPLATE_PATH; ?>/img/user_img.png" alt="" class="recall__user" />
-					<div class="recall__block">
-						<span class="recall__name">Игорь Климович</span>
-						<div class="recall__el">
-							<div class="recall__range-page">
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-							</div>
-							<div class="recall__date">16.08.2020</div>
-						</div>
-					</div>
-				</div>
-				<div class="recall__desc">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-					possimus ipsa molestias voluptates, nisi commodi modi debitis
-					unde laudantium animi, quaerat, tenetur consectetur corporis in
-					id perspiciatis consequuntur eius.
-				</div>
-			</li>
-			<!-- Отзыв 10 -->
-			<li class="recall__item">
-				<div class="recall__header">
-					<img src="<?= SITE_TEMPLATE_PATH; ?>/img/user_img.png" alt="" class="recall__user" />
-					<div class="recall__block">
-						<span class="recall__name">Алексей</span>
-						<div class="recall__el">
-							<div class="recall__range-page">
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-								<span class="range-page__star"></span>
-								<span class="range-page__star_none"></span>
-							</div>
-							<div class="recall__date">04.08.2020</div>
-						</div>
-					</div>
-				</div>
-				<div class="recall__desc">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-					possimus ipsa molestias voluptates, nisi commodi modi debitis
-					unde laudantium animi, quaerat, tenetur consectetur corporis in
-					id perspiciatis consequuntur eius. Quaerat? Lorem ipsum dolor
-					sit amet consectetur adipisicing elit. Voluptate, eaque maxime!
-					Architecto exercitationem iure, provident quo debitis
-					reprehenderit mollitia necessitatibus aspernatur, quis nemo,
-					eligendi minima fugit doloremque veritatis ut laboriosam?
-				</div>
-			</li>*/?>
 		</ul>
-		<?/*<div class="recall__pagination">
-			<a class="pagination__link pagination__link_active">1</a>
-			<a class="pagination__link">2</a>
-			<a class="pagination__link">3</a>
-			<a class="pagination__link">4</a>
-			<a class="pagination__link">5</a>
-			<a class="pagination__link">Далее</a>
-		</div>*/?>
 	</div>
 </section>
 <?
 }
 ?>
-
+<?/* Секция Открытая форма Тендер */ ?>
+    <section class="tender_form_section">
+        <div class="container">
+            <? $APPLICATION->IncludeComponent(
+                "bitrix:main.include",
+                "",
+                array(
+                    "AREA_FILE_SHOW" => "file",
+                    "AREA_FILE_SUFFIX" => "inc",
+                    "EDIT_TEMPLATE" => "",
+                    "PATH" => "/inc_areas/order_form.php",
+                    "BLOCK" => 'modal'
+                )
+            );?>
+        </div>
+    </section>
 <?/*div class="bx-catalog-element bx-<?=$arParams['TEMPLATE_THEME']?>" id="<?=$itemIds['ID']?>"
 	itemscope itemtype="http://schema.org/Product">
 	<div class="container-fluid">

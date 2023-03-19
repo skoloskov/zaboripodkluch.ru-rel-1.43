@@ -446,7 +446,8 @@ header {
 
 }
 
-.hero__buttons .hero__button_item .hero__button_item_button {
+.hero__buttons .hero__button_item .hero__button_item_button,
+.company-page-content__btn-block .hero__button_item_button {
   padding: 15px 20px;
   margin: 0 auto;
   background-color: #ff004200;
@@ -4722,7 +4723,7 @@ form .smeta-form__input {
   }
 
   .company-content__title {
-    font-size: 26px;
+    font-size: 22px;
     text-align: center;
   }
 
@@ -4925,7 +4926,7 @@ form .smeta-form__input {
   }
 
   .company-content__img {
-    width: 100%;
+    width: 80%;
   }
 
   .footer__item {
@@ -5160,18 +5161,18 @@ form .smeta-form__input {
   }
 
   .company-content__img {
-    width: auto;
+   /* width: auto;*/
     max-height: 65px;
   }
 
   .range__title {
     position: absolute;
-    top: 90px;
-    font-size: 13px;
+    top: 95px;
+    font-size: 10px;
   }
 
   .range__block {
-    justify-content: center;
+  /*  justify-content: center;*/
     position: absolute;
     top: 110px;
     max-width: 150px;
@@ -5221,6 +5222,7 @@ form .smeta-form__input {
   .company-content__order {
     padding: 0 1em;
     height: 54px;
+    font-size: 12px;
   }
 
   .company-comment__slider {
@@ -5370,8 +5372,9 @@ form .smeta-form__input {
   }
 
   .company-content__btn-block {
-    justify-content: center;
+    justify-content: right;
     width: 100%;
+    padding: 0px 0px 0px 25px;
   }
 
   .company-content__phone {
@@ -5389,8 +5392,11 @@ form .smeta-form__input {
   }
 
   .company-content__phone_text::before {
-    left: 17px;
+    left: 8px;
     top: 12px;
+    width: 20px;
+    height: 20px;
+
   }
 
   .company-comment__slider .slick-arrow {
@@ -6959,4 +6965,84 @@ section.advantages {
 
 .fa-whatsapp:before {
   content: "\f232";
+}
+
+/* Блок Люди искали */
+
+.people_search {
+  padding: 50px 0;
+}
+
+
+.people_search__link {
+  box-sizing: border-box;
+  display: inline-block;
+  margin-top: 10px;
+  margin-right: 10px;
+  max-width: 100%;
+  background: #f0f6fa;
+  color: #242729;
+  text-decoration: none;
+  line-height: 16px;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 12px 16px;
+  border-radius: 36px;
+}
+
+/* Блок Вопросы и ответы */
+
+.faq_accordion {
+  padding: 50px 0;
+}
+
+.people_search__header, .faq_accordion__header {
+  color: #242729;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.faq_accordion__item {
+  border: 1px solid #d9e4eb;
+  padding: 16px;
+  border-radius: 24px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.faq_accordion__item_header {
+  align-items: center;
+  display: flex;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 20px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.faq_accordion__item_arrow {
+  padding: 0 10px;
+  transform: rotate(90deg);
+  font-size: 18px;
+  color: #737272;
+}
+
+.faq_accordion__item_body {
+  margin-top: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.faq_accordion__item_body {
+  display: none;
+}
+
+.faq_accordion__item_active .faq_accordion__item_body {
+  display: block;
+}
+
+.faq_accordion__item_active .faq_accordion__item_arrow {
+  transform: rotate(270deg);
 }

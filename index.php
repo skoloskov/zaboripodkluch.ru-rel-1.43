@@ -208,11 +208,50 @@
         </div>
     </section>
 
+    <!-- Секция расценок -->
+    <section class="price">
+        <div class="container price__container">
+            <h2 class="price__title section__title">Прайс лист на заборы</h2>
+            <table id="table">
+                <thead class="table__header">
+                <tr>
+                    <th>Наименование</th>
+                    <th>Цена забора за погонный метр *</th>
+                </tr>
+                </thead>
+                <tbody class="table__body">
+                    <tr>
+                        <td>Профнастил</td>
+                        <td>1545 руб.</td>
+                    </tr>
+                    <tr>
+                        <td>Евроштакетник</td>
+                        <td>2008 руб.</td>
+                    </tr>
+                    <tr>
+                        <td>Забор из сетки рабица</td>
+                        <td>770 руб.</td>
+                    </tr>
+                    <tr>
+                        <td>Сварные заборы </td>
+                        <td>1795 руб.</td>
+                    </tr>
+                    <tr>
+                        <td>Заборы из дерева</td>
+                        <td>1000 руб.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <span class="table__description">* В указанные цены на заборы уже включена стоимость работ по
+			установке.</span>
+        </div>
+    </section>
+
 <?/* Секция компании */ ?>
     <section class="company">
     <div class="container company__container">
         <h2 class="parameter__title section__title">
-            Строительство заборов и ограждений в <?=$APPLICATION->GetPageProperty('regionSettings')['UF_INCITY']?> </h2>
+            Исполнители по установке заборов в <?=$APPLICATION->GetPageProperty('regionSettings')['UF_INCITY']?> под ключ</h2>
         <p class="parameter__title_size-s">
             (список лучших подрядчиков)
         </p>
@@ -438,4 +477,50 @@ $GLOBALS['arrFilter'] = ['ACTIVE' => 'Y'];//, 'PROPERTY_COMPANY' => $CompanyList
 ); ?>
 </div>
  </section>
+
+<?/* Секция Люди искали */ ?>
+<section class="people_search">
+    <div class="container people_search_container">
+        <h2 class="people_search__header">Люди искали похожее</h2>
+        <div class="people_search__list">
+            <a href="" class="people_search__link">заборы</a>
+            <a href="" class="people_search__link">заборы из профнастила</a>
+            <a href="" class="people_search__link">установка заборов</a>
+            <a href="" class="people_search__link">откатные ворота</a>
+            <a href="" class="people_search__link">строительство заборов</a>
+            <a href="" class="people_search__link">забор из профлиста</a>
+            <a href="" class="people_search__link">установка забора из профнастила</a>
+            <a href="" class="people_search__link">установка забора из профлиста</a>
+            <a href="" class="people_search__link">навесы</a>
+            <a href="" class="people_search__link">монтаж забора</a>
+            <a href="" class="people_search__link">заборы для дачи</a>
+        </div>
+    </div>
+</section>
+
+<?/* Секция Аккордеон Вопросы и ответы */ ?>
+<section class="faq_accordion">
+    <div class="container faq_accordion__container">
+        <h2 class="faq_accordion__header">Люди часто спрашивают</h2>
+        <div class="faq_accordion__list">
+            <div class="faq_accordion__item">
+                <div class="faq_accordion__item_header">Сколько стоит услуга «Строительство заборов и ограждений»? <span class="faq_accordion__item_arrow">></span></div>
+                <div class="faq_accordion__item_body">Услуга «Строительство заборов и ограждений» может стоить от 50 000 рублей. Всё зависит от задачи: расскажите, что случилось, и мастера сами расскажут о расценках, а вы выберете подходящий вариант.</div>
+            </div>
+            <div class="faq_accordion__item">
+                <div class="faq_accordion__item_header">Сколько компаний, которые оказывают услугу «Строительство заборов и ограждений»? <span class="faq_accordion__item_arrow">></span></div>
+                <div class="faq_accordion__item_body">На нашем портале зарегистрированы 30 проверенных компаний, оказывающих услугу «Строительство заборов и ограждений».</div>
+            </div>
+            <div class="faq_accordion__item">
+                <div class="faq_accordion__item_header">Клиенты обычно довольны услугой «Строительство заборов и ограждений»? <span class="faq_accordion__item_arrow">></span></div>
+                <div class="faq_accordion__item_body">Заказчики, оставившие отзывы на Яндекс Услугах, в среднем оценивают услугу «Строительство заборов и ограждений» на 4.4 из 5.</div>
+            </div>
+            <div class="faq_accordion__item">
+                <div class="faq_accordion__item_header">Как выбрать компанию в сфере «Строительство заборов и ограждений»? <span class="faq_accordion__item_arrow">></span></div>
+                <div class="faq_accordion__item_body">Можно искать по каталогу, а можно создать заказ — тогда специалисты откликнутся сами. Чтобы выбрать лучшего из лучших, загляните в профиль компании — там есть отзывы и примеры работ.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <? require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php"); ?>

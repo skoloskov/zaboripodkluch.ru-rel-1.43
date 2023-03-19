@@ -172,7 +172,7 @@ $containerName = 'container-'.$navParams['NavNum'];
             <div class="tender_list__item">
                 <div class="tender_list__item_title">
                     <a href="<?= $item['DETAIL_PAGE_URL'] ?>"><h3><?= $item['NAME'] ?></h3></a>
-                    <div class="tender_list__item_articul"><span>артикул: </span>TN-<?= $item['ID'] ?></div>
+                    <!-- div class="tender_list__item_articul"><span>артикул: </span>TN-<?= $item['ID'] ?></div -->
                 </div>
                 <div class="tender_list__item_description">
                     <div class="tender_list__item_city"><span>Населенный пункт: </span><?= $item['PROPERTIES']['PLACE_FENCE']['VALUE'] ?></div>
@@ -246,7 +246,7 @@ $containerName = 'container-'.$navParams['NavNum'];
             </div>
 
             <? } ?>
-            <?
+            <?/*
             if ($showBottomPager) {
                 ?>
                 <div data-pagination-num="<?=$navParams['NavNum']?>" class="show_more">
@@ -254,7 +254,7 @@ $containerName = 'container-'.$navParams['NavNum'];
                     <?=$arResult['NAV_STRING']?>
                     <!-- pagination-container -->
                 </div>
-            <? } ?>
+            <? } */?>
         </div>
 	</div>
 </section>

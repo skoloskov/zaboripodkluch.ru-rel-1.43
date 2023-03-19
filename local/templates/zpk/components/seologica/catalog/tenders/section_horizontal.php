@@ -32,10 +32,31 @@ else
                 echo 'Заявки на ' . mb_strtolower($arSection['NAME']) . ' в ' . $APPLICATION->GetPageProperty('regionSettings')['UF_INCITY'];
             }?>
         </h1>
-        <?$APPLICATION->IncludeComponent(
+        <?
+        $arr_domen_name = explode('.', $_SERVER['HTTP_HOST']);
+
+        if ($arr_domen_name[0] == 'zaboripodkluch') {
+            $region_xml_id = "moskva";
+        }
+        else {
+            $region_xml_id = $arr_domen_name[0];
+        }
+
+        $region_value = CIBlockPropertyEnum::GetList(Array(), Array("IBLOCK_ID"=>$arParams["IBLOCK_ID"], "XML_ID"=>$region_xml_id))->GetNext()["VALUE"];
+
+        $GLOBALS['arrTenderFilter']  = array(
+            "=PROPERTY_REGION_VALUE" => $region_value,
+        );
+
+        $APPLICATION->IncludeComponent(
             "seologica:catalog.section",
             "tenders_list",
             array(
+                "IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
+                "IBLOCK_ID" => $arParams["IBLOCK_ID"],
+                "SECTION_ID_VARIABLE" => $arParams["SECTION_ID_VARIABLE"],
+                "SECTION_ID" => $arResult["VARIABLES"]["SECTION_ID"],
+                "SECTION_CODE" => $arResult["VARIABLES"]["SECTION_CODE"],
                 "ACTION_VARIABLE" => "action",
                 "ADD_PICT_PROP" => "-",
                 "ADD_PROPERTIES_TO_BASKET" => "Y",
@@ -64,9 +85,7 @@ else
                 "ELEMENT_SORT_ORDER" => "desc",
                 "ELEMENT_SORT_ORDER2" => "desc",
                 "ENLARGE_PRODUCT" => "STRICT",
-                "FILTER_NAME" => "arrFilter",
-                "IBLOCK_ID" => "4",
-                "IBLOCK_TYPE" => "tenders",
+                "FILTER_NAME" => "arrTenderFilter",
                 "INCLUDE_SUBSECTIONS" => "A",
                 "LABEL_PROP" => array(
                     0 => "CUSTOMER_TYPE",
@@ -94,7 +113,7 @@ else
                 "PAGER_SHOW_ALWAYS" => "N",
                 "PAGER_TEMPLATE" => "tenders",
                 "PAGER_TITLE" => "Товары",
-                "PAGE_ELEMENT_COUNT" => "18",
+                "PAGE_ELEMENT_COUNT" => "20",
                 "PARTIAL_PRODUCT_PROPERTIES" => "N",
                 "PRICE_CODE" => array(
                 ),
@@ -108,10 +127,7 @@ else
                 ),
                 "RCM_PROD_ID" => $_REQUEST["PRODUCT_ID"],
                 "RCM_TYPE" => "personal",
-                "SECTION_CODE" => "",
-                "SECTION_ID" => $_REQUEST["SECTION_ID"],
-                "SECTION_ID_VARIABLE" => "SECTION_ID",
-                "SECTION_URL" => "",
+                "SECTION_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["section"],
                 "SECTION_USER_FIELDS" => array(
                     0 => "",
                     1 => "",
