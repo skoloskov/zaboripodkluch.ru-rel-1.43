@@ -1,5 +1,13 @@
 <?php
 $arUrlRewrite=array (
+  9 => 
+  array (
+    'CONDITION' => '#^/people_ask/([^/]+?)/\\??(.*)#',
+    'RULE' => 'ELEMENT_CODE=$1&$2',
+    'ID' => 'seologica:catalog.element',
+    'PATH' => '/people_ask/detail.php',
+    'SORT' => 100,
+  ),
   2 => 
   array (
     'CONDITION' => '#^/company/([^/]+?)/\\??(.*)#',

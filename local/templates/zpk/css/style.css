@@ -7022,11 +7022,19 @@ section.advantages {
 }
 
 .faq_accordion__item_arrow {
-  padding: 0 10px;
-  transform: rotate(90deg);
+  padding: 0 20px;
   font-size: 18px;
   color: #737272;
+  position: relative;
 }
+
+.faq_accordion__item_arrow .fa-chevron-down::before {
+  bottom: auto;
+  top: 0;
+  right: 0;
+}
+
+
 
 .faq_accordion__item_body {
   margin-top: 12px;
@@ -7044,5 +7052,10 @@ section.advantages {
 }
 
 .faq_accordion__item_active .faq_accordion__item_arrow {
-  transform: rotate(270deg);
+  transform: rotate(180deg);
 }
+
+.faq_accordion__item_active .faq_accordion__item_arrow .fa-chevron-down::before {
+  right: 22px;
+}
+
